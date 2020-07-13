@@ -1,3 +1,15 @@
+class Vector {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  add(v) {
+    this.x += v.x;
+    this.y += v.y;
+  }
+}
+
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
@@ -18,86 +30,38 @@ const bodies = [
     color: "#ffdc00",
     mass: 100000,
     radius: 50,
-    pos: {
-      x: canvas.width / 2,
-      y: canvas.height / 2
-    },
-    vel: {
-      x: 0,
-      y: 0
-    },
-    acc: {
-      x: 0,
-      y: 0
-    },
-    force: {
-      x: 0,
-      y: 0
-    }
+    pos: new Vector(canvas.width / 2, canvas.height / 2),
+    vel: new Vector(0, 0),
+    acc: new Vector(0, 0),
+    force: new Vector(0, 0),
   },
   {
     color: "#ff4136",
     mass: 0.01,
     radius: 5,
-    pos: {
-      x: canvas.width / 2 + 150,
-      y: canvas.height / 2
-    },
-    vel: {
-      x: 0,
-      y: -2
-    },
-    acc: {
-      x: 0,
-      y: 0
-    },
-    force: {
-      x: 0,
-      y: 0
-    }
+    pos: new Vector(canvas.width / 2 + 150, canvas.height / 2),
+    vel: new Vector(0, -2),
+    acc: new Vector(0, 0),
+    force: new Vector(0, 0),
   },
   {
     color: "#0074d9",
     mass: 0.1,
     radius: 10,
-    pos: {
-      x: canvas.width / 2 + 250,
-      y: canvas.height / 2
-    },
-    vel: {
-      x: 0,
-      y: -2
-    },
-    acc: {
-      x: 0,
-      y: 0
-    },
-    force: {
-      x: 0,
-      y: 0
-    }
+    pos: new Vector(canvas.width / 2 + 250, canvas.height / 2),
+    vel: new Vector(0, -2),
+    acc: new Vector(0, 0),
+    force: new Vector(0, 0),
   },
   {
     color: "#3d9970",
     mass: 1,
     radius: 20,
-    pos: {
-      x: canvas.width / 2 + 350,
-      y: canvas.height / 2
-    },
-    vel: {
-      x: 0,
-      y: -2
-    },
-    acc: {
-      x: 0,
-      y: 0
-    },
-    force: {
-      x: 0,
-      y: 0
-    }
-  }
+    pos: new Vector(canvas.width / 2 + 350, canvas.height / 2),
+    vel: new Vector(0, -2),
+    acc: new Vector(0, 0),
+    force: new Vector(0, 0),
+  },
 ];
 
 window.addEventListener("resize", () => {
@@ -119,13 +83,11 @@ addBodyButton.addEventListener("click", () => {
   draw();
 });
 
-gravityInput.addEventListener("input", event => {
+gravityInput.addEventListener("input", (event) => {
   const value = event.target.value;
   gravity = gravityScalar * value;
   gravitySpan.innerText = value;
 });
-
-draw();
 
 function step() {
   if (!running) {
@@ -143,11 +105,8 @@ function update() {
     body.acc.x = body.force.x / body.mass;
     body.acc.y = body.force.y / body.mass;
 
-    body.vel.x += body.acc.x;
-    body.vel.y += body.acc.y;
-
-    body.pos.x += body.vel.x;
-    body.pos.y += body.vel.y;
+    body.vel.add(body.acc);
+    body.pos.add(body.vel);
 
     body.force.x = 0;
     body.force.y = 0;
@@ -170,6 +129,11 @@ function update() {
       a.force.y += Math.sin(angle) * force;
     }
   }
+}
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 }
 
 function draw() {
@@ -196,22 +160,13 @@ function addRandomBody() {
   bodies.push({
     mass: getRandomFloat(0.01, 50),
     radius: getRandomFloat(0.5, 20),
-    pos: {
-      x: getRandomFloat(0, canvas.width),
-      y: getRandomFloat(0, canvas.height)
-    },
-    vel: {
-      x: getRandomFloat(-5, 5),
-      y: getRandomFloat(-5, 5)
-    },
-    acc: {
-      x: 0,
-      y: 0
-    },
-    force: {
-      x: 0,
-      y: 0
-    }
+    pos: new Vector(
+      getRandomFloat(0, canvas.width),
+      getRandomFloat(0, canvas.height)
+    ),
+    vel: new Vector(getRandomFloat(-5, 5), getRandomFloat(-5, 5)),
+    acc: new Vector(0, 0),
+    force: new Vector(0, 0),
   });
 }
 
@@ -219,7 +174,4 @@ function getRandomFloat(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
+draw();
