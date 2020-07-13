@@ -10,8 +10,10 @@ class Vector {
   }
 }
 
-const canvas = document.getElementById("canvas");
+const canvas = document.getElementById("bodies");
+const canvas2 = document.getElementById("paths");
 const ctx = canvas.getContext("2d");
+const ctx2 = canvas2.getContext("2d");
 
 resizeCanvas();
 
@@ -134,6 +136,10 @@ function update() {
 function resizeCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
+  canvas2.width = window.innerWidth;
+  canvas2.height = window.innerHeight;
+
+  ctx2.fillStyle = "#fff";
 }
 
 function draw() {
@@ -141,6 +147,8 @@ function draw() {
 
   for (const body of bodies) {
     drawBody(body);
+    ctx2.fillStyle = "#fff";
+    ctx2.fillRect(body.pos.x, body.pos.y, 2, 2);
   }
 }
 

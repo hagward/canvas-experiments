@@ -51,10 +51,15 @@
 
     canvas {
       display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
     }
   </style>
 </head>
 <body>
+  <canvas id="paths"></canvas>
+  <canvas id="bodies"></canvas>
   <nav>
     <button id="startStopButton">Start</button>
     <button id="addBodyButton">Add body</button>
@@ -62,7 +67,6 @@
     <input id="gravityInput" type="range" value="5" min="0" max="10" step="1">
     <span id="gravitySpan">5</span>
   </nav>
-  <canvas id="canvas"></canvas>
   <script src="gravity.js"></script>
 </body>
 </html>
