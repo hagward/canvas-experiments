@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas Experiments</title>
+    <style>
+      :root {
+        --bg-clr: #fff;
+        --link-clr: #000;
+      }
+
+      body {
+        background: var(--bg-clr);
+        font-size: 2rem;
+      }
+
+      nav {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 800px;
+      }
+
+      ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        list-style: none;
+        padding: 0;
+      }
+
+      a {
+        display: block;
+        color: var(--link-clr);
+        text-decoration: none;
+        padding: 1rem;
+        border-radius: 3px;
+        transition: all 50ms;
+        border: 1px solid var(--link-clr);
+      }
+
+      a:hover {
+        background: var(--link-clr);
+        color: var(--bg-clr);
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="graphjs/">Graphs</a></li>
+        <li><a href="gravity/">Gravity</a></li>
+        <li><a href="mazes/">Mazes</a></li>
+        <li><a href="7-seg-display/">Seven-segment display</a></li>
+      </ul>
+    </nav>
+  </body>
+</html>
