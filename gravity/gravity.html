@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Gravity</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font: 1rem Arial, Helvetica, sans-serif;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #000;
+    }
+
+    nav {
+      align-items: center;
+      background-color: #33313b;
+      color: #f6f5f5;
+      display: flex;
+      padding: .5rem;
+      position: fixed;
+      width: 100%;
+    }
+
+    button {
+      background-color: #4592af;
+      border: none;
+      border-radius: .2rem;
+      color: #f6f5f5;
+      cursor: pointer;
+      padding: .5rem;
+      transition: 100ms all ease-in-out;
+    }
+
+    button:hover {
+      background-color: #f6f5f5;
+      color: #4592af;
+    }
+
+    nav > *:not(:last-child) {
+      margin-right: .5rem;
+    }
+
+    canvas {
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="paths"></canvas>
+  <canvas id="bodies"></canvas>
+  <nav>
+    <button id="startStopButton">Start</button>
+    <button id="addBodyButton">Add body</button>
+    <label for="gravityInput">Gravity</label>
+    <input id="gravityInput" type="range" value="5" min="0" max="10" step="1">
+    <span id="gravitySpan">5</span>
+  </nav>
+  <script src="gravity.js"></script>
+</body>
+</html>
