@@ -6,8 +6,8 @@
     <title>Canvas Experiments</title>
     <style>
       :root {
-        --bg-clr: #eee;
-        --link-clr: #000;
+        --bg-clr: #191919;
+        --link-clr: #FF785A;
       }
 
       body {
@@ -19,9 +19,7 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 50%;
         transform: translate(-50%, -50%);
-        max-width: 800px;
       }
 
       ul {
@@ -32,14 +30,21 @@
         padding: 0;
       }
 
+      @media (max-width: 700px) {
+        ul {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+
       a {
         display: block;
         color: var(--link-clr);
         text-decoration: none;
         padding: 1rem;
-        border-radius: 3px;
-        transition: all 50ms;
-        border: 1px solid var(--link-clr);
+        border-radius: .5rem;
+        transition: all 250ms;
+        border: .25rem solid var(--link-clr);
       }
 
       a:hover {
